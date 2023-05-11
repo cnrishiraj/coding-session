@@ -1,0 +1,31 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Number Generator</title>
+</head>
+<body>
+  <h1 id="random-number">Loading...</h1>
+  <button onclick="reloadPage()">Reload</button>
+
+  <script>
+    function reloadPage() {
+      // Reload the page
+      location.reload();
+    }
+
+    function fetchRandomNumber() {
+      // API call to get the random number
+      fetch('/random-number')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('random-number').textContent = 'Random Number: ' + data.number;
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    // API call on page load
+    fetchRandomNumber();
+  </script>
+</body>
+</html>
